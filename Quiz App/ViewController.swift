@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    
+    // Fields
     @IBOutlet weak var questionLbl: UILabel!
     @IBOutlet weak var trueBtn: UIButton!
     @IBOutlet weak var falseBtn: UIButton!
@@ -22,22 +22,32 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Initailize quiz
         quiz = Quiz()
         
+        // Get first question
         questionLbl.text = quiz.getQuestion()
     }
     
+    /**
+     *  truePressed: handles a True btn tap event
+     */
     @IBAction func truePressed(sender: AnyObject) {
         quiz.answerQuestion(true)
         waitforNewQuestion()
     }
     
+    /**
+     *  falsePressed: handles a False btn tap event
+     */
     @IBAction func falsePressed(sender: AnyObject) {
         quiz.answerQuestion(false)
         waitforNewQuestion()
     }
     
-    
+    /**
+     *  nextPressed: handles a Next btn tap event
+     */
     @IBAction func nextPressed(sender: AnyObject) {
         
         if(quiz.endOfQuiz()) {
@@ -51,6 +61,9 @@ class ViewController: UIViewController {
         }
     }
     
+    /**
+     *  playAgainPressed: handles a True btn tap event
+     */
     @IBAction func playAgainPressed(sender: AnyObject) {
         
         quiz = Quiz()
@@ -62,13 +75,18 @@ class ViewController: UIViewController {
         playAgainBtn.hidden = true
     }
     
-    
+    /**
+     *  waitforNewQuestion: hides answer btns and shows next question btn
+     */
     func waitforNewQuestion() {
         nextQBtn.hidden = false
         trueBtn.hidden = true
         falseBtn.hidden = true
     }
 
+    /**
+     *  showScore: Displays quiz score
+     */
     func showScore() {
         
         let score = quiz.getScore().score

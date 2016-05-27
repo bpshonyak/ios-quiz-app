@@ -8,15 +8,20 @@
 
 import Foundation
 
+/**
+  # Quiz Class
+  Represents a quiz instance
+*/
 class Quiz {
     
+    // Fields
     var questions:[(q: String, a: Bool)] = []
     var score: Int
     var index: Int
     
     // constructor
     init() {
-        // initailize
+        // initailize variables
         score = 0
         index = 0
         // load questions
@@ -32,6 +37,10 @@ class Quiz {
         questions.append((q: "E30's are slower than Honda SI's.", a: true))
     }
     
+    /**
+     *   answerQuestion: Answers the current true of false question
+     * - parameter answer: true of false answer value
+     */
     func answerQuestion(answer: Bool)-> Bool{
         let question = questions[index]
         index = index + 1
@@ -43,15 +52,27 @@ class Quiz {
         }
     }
     
+    /**
+     * getQuestion: Retrieves current question text
+     * - returns: String
+     */
     func getQuestion()-> String {
         let q = questions[index].q
         return q
     }
     
+    /**
+     * getScore: Retrieves score and total question count
+     * - returns: (Int, Int)
+     */
     func getScore()-> (score: Int, total: Int) {
         return (score, questions.count);
     }
     
+    /**
+     * endOfQuiz: Checks for end of quiz state
+     * - returns: Bool - true if the current question is the last question
+     */
     func endOfQuiz() -> Bool {
         return index >= questions.count;
     }
